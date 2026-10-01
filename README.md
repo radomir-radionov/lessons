@@ -43,12 +43,16 @@ npx serve .
 
 **https://radomir-radionov.github.io/lessons/**
 
-### Включить публикацию (один раз)
+### Включить публикацию (один раз, без Actions)
 
-Workflow включает Pages автоматически (`enablement: true`). Если деплой всё ещё падает:
+GitHub Actions не может включить Pages без ручной настройки. Сделайте так:
 
-1. [Settings → Actions → General](https://github.com/radomir-radionov/lessons/settings/actions) → **Workflow permissions** → **Read and write permissions**
-2. [Actions](https://github.com/radomir-radionov/lessons/actions) → **Deploy to GitHub Pages** → **Re-run all jobs**
+1. Откройте **[Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages)**
+2. **Build and deployment** → **Deploy from a branch**
+3. **Branch:** `master` · **Folder:** `/ (root)` → **Save**
+4. Подождите 1–2 минуты и откройте ссылку выше
+
+> Не выбирайте **GitHub Actions** — для этого проекта достаточно публикации из ветки `master`.
 
 ### Сборка данных уроков
 
