@@ -43,16 +43,9 @@ npx serve .
 
 **https://radomir-radionov.github.io/lessons/**
 
-### Включить публикацию (один раз, без Actions)
+### Публикация
 
-GitHub Actions не может включить Pages без ручной настройки. Сделайте так:
-
-1. Откройте **[Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages)**
-2. **Build and deployment** → **Deploy from a branch**
-3. **Branch:** `master` · **Folder:** `/ (root)` → **Save**
-4. Подождите 1–2 минуты и откройте ссылку выше
-
-> Не выбирайте **GitHub Actions** — для этого проекта достаточно публикации из ветки `master`.
+Сайт деплоится автоматически через GitHub Actions при push в `master`.
 
 ### Сборка данных уроков
 
