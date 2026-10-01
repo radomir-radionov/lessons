@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML, CSS, Git — Уроки</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <header class="sidebar__header">
+          <h1 class="sidebar__title">Уроки</h1>
+          <p class="sidebar__subtitle">HTML, CSS, Git</p>
+        </header>
+        <nav class="sidebar__nav" id="lesson-nav" aria-label="Список уроков"></nav>
+      </aside>
+
+      <main class="content">
+        <header class="content__header">
+          <h2 class="content__title" id="lesson-title">Выберите урок</h2>
+          <nav class="tabs" id="file-tabs" aria-label="Материалы урока"></nav>
+        </header>
+        <article class="markdown" id="markdown-content">
+          <p class="placeholder">
+            Откройте урок в боковой панели, чтобы просмотреть материалы.
+          </p>
+        </article>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
