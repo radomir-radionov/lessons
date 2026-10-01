@@ -2,56 +2,46 @@
 
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
-**План занятия:** [lesson-plan.md](lesson-plan.md)  
-**Задачи на уроке:** [tasks.md](tasks.md)  
-**Домашнее задание:** [homework.md](homework.md)
+**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Домашнее задание:** [homework.md](homework.md)
+
+> Это **справочник**, а не текст для чтения вслух. На уроке проходи только разделы из [плана](lesson-plan.md#тайминг-60-минут). Остальное — для практики и домашнего задания.
+
+**Полезные ссылки:** [MDN — CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions) · [MDN — @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) · [MDN — transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
+
+---
+
+## Навигация
+
+| §                                                         | Тема                    | На уроке  |
+| --------------------------------------------------------- | ----------------------- | --------- |
+| [1](#1-введение-зачем-нужны-анимации)                    | Зачем анимации          | ✅ 5 мин  |
+| [2](#2-плавные-переходы-transition)                       | transition              | ✅ 10 мин |
+| [3](#3-transform-в-связке-с-transition)                   | transform + transition  | ✅ 10 мин |
+| [4](#4-цикличные-анимации-keyframes-и-animation)          | @keyframes и animation  | ✅ 10 мин |
+| [5](#5-итог-урока)                                        | Итог и ДЗ               | ✅ 5 мин  |
 
 ---
 
 ## 1. Введение: зачем нужны анимации
 
-Статичная страница работает, но **анимации** делают интерфейс живым и понятным. Когда кнопка плавно меняет цвет при наведении — пользователь видит, что элемент интерактивный. Когда badge пульсирует — внимание притягивается к важному уведомлению.
-
-В CSS есть два основных инструмента:
+Анимации дают **обратную связь**: кнопка при `:hover` показывает, что элемент кликабельный; пульсирующий badge привлекает внимание.
 
 | Инструмент | Когда использовать | Пример |
 | ---------- | ------------------ | ------ |
-| `transition` | Плавный переход от одного состояния к другому | Кнопка при `:hover` |
-| `@keyframes` + `animation` | Сложная или цикличная анимация | Пульсация, загрузчик, slide-in |
+| `transition` | Плавный переход между двумя состояниями | Кнопка при `:hover` |
+| `@keyframes` + `animation` | Цикличная или многошаговая анимация | Пульсация, slide-in |
 
-> **Правило хорошего тона:** UI-анимации должны быть короткими (обычно 150–400 мс) и не мешать чтению. Если анимация раздражает — её слишком много или она слишком долгая.
+> **Правило:** UI-анимации — 150–400 мс. Длиннее — только для декора, не для каждого элемента.
 
-### Аналогия
+### Производительность
 
-Представь дверь в магазине:
+| Свойство | Оценка | Почему |
+| -------- | ------ | ------ |
+| `transform`, `opacity` | ✅ Лучший выбор | Аппаратное ускорение, без reflow |
+| `width`, `height`, `margin` | ⚠️ Осторожно | Могут вызывать пересчёт layout |
+| `display` | ❌ Не анимируется | `none` → `block` — мгновенно |
 
-- **Без анимации** — дверь захлопывается мгновенно (резко, неожиданно)
-- **С transition** — дверь плавно закрывается (естественно, предсказуемо)
-- **С @keyframes** — дверь открывается по расписанию каждые 5 секунд (цикл, сценарий)
-
----
-
-### Определения и понятия
-
-#### CSS-анимация
-
-**CSS-анимация** — изменение визуальных свойств элемента во времени без JavaScript. Браузер сам интерполирует значения между началом и концом.
-
-#### Интерактивное состояние
-
-**Интерактивное состояние** — состояние элемента при взаимодействии пользователя: `:hover` (наведение), `:focus` (фокус с клавиатуры), `:active` (нажатие).
-
-#### Производительность анимаций
-
-Для плавности лучше анимировать свойства, которые не вызывают пересчёт всей страницы:
-
-- ✅ `transform`, `opacity` — аппаратное ускорение
-- ⚠️ `width`, `height`, `margin` — могут вызывать «дёрганье»
-- ❌ `display: none` → `block` — не анимируется через `transition`
-
-#### prefers-reduced-motion
-
-**`prefers-reduced-motion`** — медиазапрос для пользователей, которые отключили анимации в системе (доступность):
+### Доступность: prefers-reduced-motion
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -62,21 +52,27 @@
 }
 ```
 
+### Ключевые понятия
+
+| Термин | Определение |
+| ------ | ----------- |
+| **CSS-анимация** | Изменение свойств во времени без JavaScript |
+| **Интерактивное состояние** | `:hover`, `:focus`, `:active` — триггеры для transition |
+| **prefers-reduced-motion** | Медиазапрос: пользователь отключил анимации в системе |
+
 ---
 
 ## 2. Плавные переходы (transition)
 
-`transition` описывает, **как** свойство меняется при изменении значения (например, при `:hover`).
-
-### Синтаксис
+`transition` описывает, **как** свойство меняется при смене значения.
 
 ```css
-.element {
+.btn {
   background-color: #3498db;
   transition: background-color 0.3s ease;
 }
 
-.element:hover {
+.btn:hover {
   background-color: #2980b9;
 }
 ```
@@ -88,121 +84,87 @@
 | `transition-property` | Какое свойство анимировать | `background-color`, `all` |
 | `transition-duration` | Длительность | `0.3s`, `300ms` |
 | `transition-timing-function` | Кривая скорости | `ease`, `linear`, `ease-in-out` |
-| `transition-delay` | Задержка перед стартом | `0.1s` |
+| `transition-delay` | Задержка старта | `0.1s` |
 
-**Сокращённая запись:**
+**Сокращение:** `transition: property duration timing-function delay;`
 
 ```css
-transition: property duration timing-function delay;
-/* Пример */
 transition: transform 0.3s ease-in-out 0.1s;
+
+/* Несколько свойств */
+transition:
+  background-color 0.3s ease,
+  transform 0.2s ease;
 ```
 
-### Несколько свойств
+### timing-function
 
-```css
-.button {
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-}
-```
+| Значение | Поведение |
+| -------- | --------- |
+| `ease` | Медленный старт и финиш (по умолчанию) |
+| `linear` | Равномерная скорость |
+| `ease-in` | Ускорение к концу |
+| `ease-out` | Замедление к концу |
+| `ease-in-out` | Ускорение и замедление |
 
 ### Важно
 
-`transition` нужно задавать на **базовом** состоянии элемента, а не только на `:hover`. Иначе при уходе курсора анимация «отката» не сработает.
+`transition` задают на **базовом** элементе, не только на `:hover` — иначе «откат» при уходе курсора будет мгновенным.
 
 ```css
 /* ✅ Правильно */
-.btn {
-  transition: background-color 0.3s;
-}
-.btn:hover {
-  background-color: red;
-}
+.btn { transition: background-color 0.3s; }
+.btn:hover { background-color: red; }
 
-/* ❌ Неправильно — transition только на hover */
+/* ❌ Неправильно */
 .btn:hover {
   transition: background-color 0.3s;
   background-color: red;
 }
 ```
-
----
-
-### Определения и понятия
-
-#### transition
-
-**`transition`** — CSS-свойство, которое включает плавное изменение других свойств при смене их значения.
-
-#### timing-function
-
-**`timing-function`** (функция времени) — определяет темп анимации:
-
-- `ease` — медленный старт, быстрая середина, медленный финиш (по умолчанию)
-- `linear` — равномерная скорость
-- `ease-in` — ускорение к концу
-- `ease-out` — замедление к концу
-- `ease-in-out` — ускорение и замедление
-- `cubic-bezier(x1, y1, x2, y2)` — кастомная кривая
-
-#### Анимируемые свойства
-
-**Анимируемые свойства** — свойства, которые могут плавно меняться: цвета, размеры (с осторожностью), `transform`, `opacity`, `box-shadow` и др. Свойство `display` не анимируется.
 
 ---
 
 ## 3. Transform в связке с transition
 
-`transform` изменяет элемент **визуально**, не затрагивая поток документа (соседние элементы не «прыгают»).
+`transform` изменяет элемент **визуально**, не сдвигая соседей в потоке документа.
 
 ### Основные функции
+
+| Функция | Назначение | Пример |
+| ------- | ---------- | ------ |
+| `scale()` | Масштаб | `scale(1.05)` — +5% |
+| `translateX/Y()` | Сдвиг | `translateX(-100%)` — за экран |
+| `rotate()` | Поворот | `rotate(45deg)` |
 
 ```css
 .card {
   transition: transform 0.3s ease;
 }
-
 .card:hover {
-  transform: scale(1.05);        /* увеличение на 5% */
-}
-
-.icon {
-  transform: rotate(45deg);        /* поворот */
+  transform: scale(1.05);
 }
 
 .menu {
-  transform: translateX(-100%);    /* сдвиг влево за экран */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
 }
-
 .menu.is-open {
-  transform: translateX(0);      /* на место */
+  transform: translateX(0);
 }
 ```
-
-### Комбинация нескольких transform
-
-```css
-.button:hover {
-  transform: translateY(-2px) scale(1.02);
-}
-```
-
-Порядок функций важен: сначала выполняется справа налево (в зависимости от контекста), но на практике комбинируй осмысленно.
 
 ### transform-origin
 
-Точка, относительно которой происходит трансформация:
+Точка трансформации (по умолчанию `center center`):
 
 ```css
 .badge {
   transform-origin: center;
-  transition: transform 0.3s;
 }
 ```
 
-### Типичный паттерн: кнопка с hover
+### Паттерн: кнопка с hover
 
 ```css
 .btn {
@@ -229,37 +191,15 @@ transition: transform 0.3s ease-in-out 0.1s;
 }
 ```
 
----
-
-### Определения и понятия
-
-#### transform
-
-**`transform`** — CSS-свойство для визуального преобразования элемента: перемещение, масштаб, поворот, наклон.
-
-#### scale()
-
-**`scale()`** — масштабирование. `scale(1)` — исходный размер, `scale(1.1)` — увеличение на 10%, `scale(0.9)` — уменьшение.
-
-#### translate()
-
-**`translate()`** — сдвиг элемента. `translateX(10px)` — по горизонтали, `translateY(-5px)` — по вертикали, `translate(10px, 5px)` — оба направления.
-
-#### rotate()
-
-**`rotate()`** — поворот на угол в градусах: `rotate(90deg)`.
-
-#### transform-origin
-
-**`transform-origin`** — точка трансформации. По умолчанию `center center` (центр элемента).
+Комбинация: `transform: translateY(-2px) scale(1.02);`
 
 ---
 
 ## 4. Цикличные анимации: @keyframes и animation
 
-Когда нужна анимация **без** действия пользователя (пульсация, вращение, slide-in при загрузке) — используй `@keyframes`.
+Для анимаций **без** действия пользователя (пульсация, slide-in при загрузке).
 
-### Шаг 1. Описать ключевые кадры
+### Шаг 1 — ключевые кадры
 
 ```css
 @keyframes pulse {
@@ -276,18 +216,15 @@ transition: transform 0.3s ease-in-out 0.1s;
     opacity: 1;
   }
 }
-```
 
-Можно использовать проценты (`0%`, `50%`, `100%`) или ключевые слова `from` и `to`:
-
-```css
+/* Короткая запись */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 ```
 
-### Шаг 2. Применить animation к элементу
+### Шаг 2 — применить к элементу
 
 ```css
 .badge {
@@ -300,20 +237,18 @@ transition: transform 0.3s ease-in-out 0.1s;
 | Свойство | Описание | Пример |
 | -------- | -------- | ------ |
 | `animation-name` | Имя @keyframes | `pulse` |
-| `animation-duration` | Длительность одного цикла | `1.5s` |
+| `animation-duration` | Длительность цикла | `1.5s` |
 | `animation-timing-function` | Кривая | `ease-in-out` |
 | `animation-delay` | Задержка старта | `0.5s` |
-| `animation-iteration-count` | Количество повторов | `3`, `infinite` |
+| `animation-iteration-count` | Повторы | `3`, `infinite` |
 | `animation-direction` | Направление | `normal`, `alternate` |
-| `animation-fill-mode` | Состояние до/после | `forwards`, `both` |
+| `animation-fill-mode` | Стили до/после | `forwards`, `both` |
 
-**Сокращённая запись:**
+**Сокращение:** `animation: name duration timing-function delay iteration-count;`
 
-```css
-animation: name duration timing-function delay iteration-count direction fill-mode;
-```
+### Примеры
 
-### Пример: пульсирующий badge
+**Пульсирующий badge:**
 
 ```css
 @keyframes pulse {
@@ -332,7 +267,7 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 }
 ```
 
-### Пример: slide-in меню
+**Slide-in меню:**
 
 ```css
 @keyframes slideIn {
@@ -355,50 +290,30 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 
 | | transition | animation |
 | --- | --- | --- |
-| **Триггер** | Изменение состояния (`:hover`, класс) | Автоматически при загрузке или по классу |
-| **Циклы** | Один переход туда-обратно | Можно зациклить (`infinite`) |
-| **Сложность** | Два состояния (начало → конец) | Любое количество ключевых кадров |
+| **Триггер** | Смена состояния (`:hover`, класс) | Автоматически или по классу |
+| **Циклы** | Один переход туда-обратно | `infinite` и др. |
+| **Сложность** | Два состояния | Любое число кадров |
 | **Синтаксис** | `transition: ...` | `@keyframes` + `animation: ...` |
 
----
+### animation-fill-mode
 
-### Определения и понятия
-
-#### @keyframes
-
-**`@keyframes`** — CSS-правило, описывающее последовательность ключевых кадров анимации. Каждый кадр задаёт значения свойств в определённый момент времени.
-
-#### animation
-
-**`animation`** — сокращённое свойство для применения keyframes-анимации к элементу.
-
-#### animation-iteration-count
-
-**`animation-iteration-count`** — сколько раз повторяется анимация. Значение `infinite` — бесконечный цикл.
-
-#### animation-fill-mode
-
-**`animation-fill-mode`** — какие стили применять до и после анимации:
-
-- `none` — стили keyframes не сохраняются
-- `forwards` — сохранить стили последнего кадра
-- `backwards` — применить стили первого кадра во время delay
-- `both` — forwards + backwards
-
-#### Ключевой кадр (keyframe)
-
-**Ключевой кадр** — точка во времени анимации (например, `0%`, `50%`, `100%`), где заданы конкретные значения CSS-свойств.
+| Значение | Поведение |
+| -------- | --------- |
+| `none` | Стили keyframes не сохраняются |
+| `forwards` | Сохранить стили последнего кадра |
+| `backwards` | Применить первый кадр во время delay |
+| `both` | forwards + backwards |
 
 ---
 
 ## 5. Итог урока
 
-### Что мы узнали сегодня
+### Что мы узнали
 
 1. **`transition`** — плавный переход при смене состояния (`:hover`, `:focus`)
-2. **`transform`** — перемещение, масштаб, поворот без влияния на поток документа
+2. **`transform`** — перемещение, масштаб, поворот без влияния на поток
 3. **`@keyframes`** — описание сложных и цикличных анимаций
-4. **`animation-*`** — управление длительностью, повторами и направлением
+4. **`animation-*`** — длительность, повторы, направление
 5. Анимации должны быть **короткими** и **осмысленными**
 
 ### Вопросы для самопроверки
@@ -411,19 +326,7 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 
 ### Домашнее задание
 
-Выполнить задание **«Анимированная карточка»** из файла [homework.md](homework.md).
-
----
-
-### Что мы НЕ изучаем на этом уроке
-
-| Тема | Когда |
-| ---- | ----- |
-| JavaScript-анимации (Web Animations API) | За рамками модуля |
-| Библиотеки GSAP, Anime.js | Не в этом курсе |
-| SVG `<animate>` и SMIL | Не в этом курсе |
-| 3D-трансформации (`perspective`) | Только упоминание |
-| CSS Scroll-driven animations | Экспериментальные API |
+Выполни задание **«Анимированная карточка»** → [homework.md](homework.md)
 
 ---
 
@@ -435,15 +338,11 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 | transition-duration | Длительность перехода |
 | timing-function | Кривая скорости анимации |
 | transform | Визуальное преобразование элемента |
-| scale | Масштабирование элемента |
-| translate | Сдвиг элемента по осям |
-| rotate | Поворот элемента |
+| scale / translate / rotate | Масштаб / сдвиг / поворот |
 | transform-origin | Точка, относительно которой выполняется transform |
 | @keyframes | Правило с ключевыми кадрами анимации |
 | animation | Применение keyframes-анимации к элементу |
-| animation-iteration-count | Количество повторов анимации |
+| animation-iteration-count | Количество повторов (`infinite` — бесконечно) |
 | animation-fill-mode | Поведение стилей до и после анимации |
+| keyframe | Ключевой кадр — точка во времени (0%, 50%, 100%) |
 | prefers-reduced-motion | Медиазапрос для отключения анимаций (доступность) |
-| keyframe | Ключевой кадр — точка во времени анимации |
-| ease / linear | Стандартные функции времени |
-| infinite | Бесконечное повторение анимации |
