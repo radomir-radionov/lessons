@@ -39,6 +39,17 @@ npx serve .
 
 Затем откройте в браузере адрес, который выведет команда (обычно `http://localhost:3000`).
 
+## GitHub Pages
+
+Сайт публикуется автоматически при push в `master`:
+
+**https://radomir-radionov.github.io/lessons/**
+
+Если страница не открывается после первого деплоя:
+
+1. Откройте **Settings → Pages** в репозитории на GitHub
+2. В **Build and deployment** выберите источник **GitHub Actions**
+
 ## Просмотр
 
 - Боковая панель — список уроков
