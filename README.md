@@ -45,18 +45,10 @@ npx serve .
 
 ### Включить публикацию (один раз)
 
-Сейчас Pages **не включён** в репозитории — поэтому сайт отдаёт 404.
+Workflow включает Pages автоматически (`enablement: true`). Если деплой всё ещё падает:
 
-1. Откройте [Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages) (нужен вход в GitHub)
-2. **Build and deployment** → **GitHub Actions**
-3. Сохраните — при следующем push workflow задеплоит сайт
-
-Или через терминал (после `gh auth login`):
-
-```bash
-gh api repos/radomir-radionov/lessons/pages -X POST \
-  -f build_type=workflow
-```
+1. [Settings → Actions → General](https://github.com/radomir-radionov/lessons/settings/actions) → **Workflow permissions** → **Read and write permissions**
+2. [Actions](https://github.com/radomir-radionov/lessons/actions) → **Deploy to GitHub Pages** → **Re-run all jobs**
 
 ### Сборка данных уроков
 
