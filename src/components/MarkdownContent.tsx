@@ -1,11 +1,13 @@
 import type { Components } from "react-markdown";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { stripHomeworkExampleStructure } from "../lib/homeworkMarkdown";
 import type { LessonFile } from "../types";
 import { CodeBlock } from "./CodeBlock";
 
 type MarkdownContentProps = {
   markdown: string;
+  file: LessonFile;
   onFileLinkClick: (file: LessonFile) => void;
 };
 
@@ -22,8 +24,13 @@ function isLessonFile(value: string): value is LessonFile {
 
 export function MarkdownContent({
   markdown,
+  file,
   onFileLinkClick,
 }: MarkdownContentProps) {
+  const content =
+    file === "homework.md"
+      ? stripHomeworkExampleStructure(markdown)
+      : markdown;
   const components: Components = {
     a: ({ href, children }) => {
       if (!href || href.startsWith("http") || href.startsWith("#")) {
@@ -61,7 +68,7 @@ export function MarkdownContent({
   return (
     <article className="markdown">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-        {markdown}
+        {content}
       </ReactMarkdown>
     </article>
   );

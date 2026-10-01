@@ -64,6 +64,7 @@ export default function App() {
         {markdown ? (
           <MarkdownContent
             markdown={markdown}
+            file={file}
             onFileLinkClick={(nextFile) => selectLesson(lesson, nextFile)}
           />
         ) : (
