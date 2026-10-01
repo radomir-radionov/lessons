@@ -3,9 +3,8 @@
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
 **Формат:** проектное занятие  
-**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Сдача проекта:** [homework.md](homework.md)
+[План занятия](lesson-plan.md) · [Задачи](tasks.md) · [Сдача проекта](homework.md)
 
-> Это **справочник** и **чеклист финальной сдачи**. На уроке — layout, адаптив, форма, анимации и полировка. [homework.md](homework.md) — не обычное ДЗ, а форма сдачи проекта.
 
 **Полезные ссылки:** [MDN — Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout) · [MDN — Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) · [MDN — Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries)
 

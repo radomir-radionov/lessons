@@ -2,9 +2,8 @@
 
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
-**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Домашнее задание:** [homework.md](homework.md)
+[План занятия](lesson-plan.md) · [Задачи](tasks.md) · [Домашнее задание](homework.md)
 
-> Это **справочник**, а не текст для чтения вслух. На уроке проходи только разделы из [плана](lesson-plan.md#тайминг-60-минут). Остальное — для практики и домашнего задания.
 
 **Полезные ссылки:** [Bootstrap Docs](https://getbootstrap.com/docs/) · [Tailwind CSS Docs](https://tailwindcss.com/docs) · [Tailwind Play](https://play.tailwindcss.com/)
 

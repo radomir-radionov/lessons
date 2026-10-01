@@ -2,9 +2,8 @@
 
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
-**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Домашнее задание:** [homework.md](homework.md)
+[План занятия](lesson-plan.md) · [Задачи](tasks.md) · [Домашнее задание](homework.md)
 
-> Это **справочник**, а не текст для чтения вслух. На уроке проходи только разделы из [плана](lesson-plan.md#тайминг-60-минут). Остальное — для практики и домашнего задания.
 
 **Полезные ссылки:** [MDN — Responsive design](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design) · [MDN — Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries)
 

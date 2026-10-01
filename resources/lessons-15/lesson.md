@@ -3,9 +3,8 @@
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
 **Формат:** проектное занятие  
-**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Домашнее задание:** [homework.md](homework.md)
+[План занятия](lesson-plan.md) · [Задачи](tasks.md) · [Домашнее задание](homework.md)
 
-> Это **справочник** и **бриф проекта**. На уроке — планирование, разметка и базовые стили. Доработка layout, адаптива и анимаций — на следующем занятии.
 
 **Полезные ссылки:** [MDN — HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) · [placehold.co](https://placehold.co/) · [GitHub — Creating a repo](https://docs.github.com/en/get-started/quickstart/create-a-repository)
 

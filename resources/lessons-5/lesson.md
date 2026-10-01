@@ -2,9 +2,8 @@
 
 **Модуль:** HTML, CSS, Git  
 **Длительность:** 60 минут  
-**План занятия:** [lesson-plan.md](lesson-plan.md) · **Задачи:** [tasks.md](tasks.md) · **Домашнее задание:** [homework.md](homework.md)
+[План занятия](lesson-plan.md) · [Задачи](tasks.md) · [Домашнее задание](homework.md)
 
-> Это **справочник**, а не текст для чтения вслух. На уроке проходи только разделы из [плана](lesson-plan.md#тайминг-60-минут). Остальное — для практики и домашнего задания.
 
 **Полезные ссылки:** [MDN — Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout) · [CSS-Tricks — Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
