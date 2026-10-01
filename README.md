@@ -1,60 +1,34 @@
 # HTML, CSS, Git — Учебные материалы
 
-Курс из 16 уроков по вёрстке и Git.
+React-приложение для просмотра 16 уроков по вёрстке и Git.
+
+**Сайт:** https://radomir-radionov.github.io/lessons/
 
 ## Структура
 
 ```
-├── index.html          # Страница для просмотра материалов
-├── css/                # Стили
-├── js/                 # Логика просмотрщика
-└── resources/          # Все уроки
-    ├── html&css/
-    ├── lessons-1/
-    ├── lessons-2/
-    └── ...
+├── src/                # React-приложение
+├── resources/          # Markdown-материалы уроков
+├── scripts/build.mjs   # Сборка lessons-data.json из resources/
+└── dist/               # Production-сборка (после npm run build)
 ```
 
-Каждый урок содержит:
-
-- `lesson.md` — теория
-- `lesson-plan.md` — план для преподавателя
-- `tasks.md` — задачи на уроке
-- `homework.md` — домашнее задание
-
-## Как открыть
-
-Материалы загружаются через `fetch`, поэтому нужен локальный сервер:
-
-**VS Code + Live Server**
-
-1. Откройте папку проекта в VS Code
-2. Правый клик на `index.html` → **Open with Live Server**
-
-**Терминал**
+## Разработка
 
 ```bash
-npx serve .
+npm install
+npm run dev
 ```
 
-Затем откройте в браузере адрес, который выведет команда (обычно `http://localhost:3000`).
+Откройте http://localhost:5173/lessons/
 
-## GitHub Pages
-
-**https://radomir-radionov.github.io/lessons/**
-
-### Публикация
-
-Сайт деплоится автоматически через GitHub Actions при push в `master`.
-
-### Сборка данных уроков
+## Сборка
 
 ```bash
 npm run build
+npm run preview
 ```
 
-## Просмотр
+## GitHub Pages
 
-- Боковая панель — список уроков
-- Вкладки — Урок, План, Задачи, ДЗ
-- Ссылки между файлами урока работают внутри просмотрщика
+Деплой автоматический при push в `master` через GitHub Actions.
