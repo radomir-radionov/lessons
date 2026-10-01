@@ -98,16 +98,6 @@
 
 ---
 
-## Что НЕ входит в урок 6
-
-- `position: fixed` и `sticky` — уроки 9–10
-- `:not()`, `:first-child`, `:last-child` подробно — углубление
-- `transition` и `animation` — урок 13
-- JavaScript для открытия/закрытия модалки — позже
-- `transform` подробно — урок 7
-
----
-
 ## Чеклист для преподавателя
 
 - [ ] Папка `states-practice` с `index.html` и `style.css`

@@ -84,16 +84,6 @@
 
 ---
 
-## Что НЕ входит в урок 12
-
-- `subgrid` (продвинутый Grid)
-- `auto-fit`, `auto-fill`, `minmax()` — продвинутые шаблоны
-- Анимации, transitions (урок 13)
-- Bootstrap, Tailwind (урок 14)
-- JavaScript
-
----
-
 ## Чеклист для преподавателя
 
 - [ ] Ученик создал grid-контейнер с `display: grid`
