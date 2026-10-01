@@ -1,0 +1,8 @@
+{
+  "name": "lessons",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "npx serve ."
+  }
+}

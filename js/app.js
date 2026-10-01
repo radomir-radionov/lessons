@@ -50,7 +50,8 @@ function updateUrl(lesson, file) {
   const params = new URLSearchParams();
   params.set("lesson", String(lesson.id));
   params.set("file", file);
-  window.history.replaceState(null, "", `?${params.toString()}`);
+  const pathname = window.location.pathname.split("?")[0];
+  window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
 }
 
 function renderLessonNav() {
@@ -106,28 +107,19 @@ function renderFileTabs() {
   });
 }
 
-async function loadMarkdown(lesson, file) {
-  const path = `resources/${lesson.folder}/${file}`;
-  markdownContent.innerHTML = "<p>Загрузка…</p>";
+function loadMarkdown(lesson, file) {
+  const markdown = window.LESSONS_DATA?.[lesson.folder]?.[file];
 
-  try {
-    const response = await fetch(path);
-    if (!response.ok) {
-      throw new Error(`Файл не найден: ${path}`);
-    }
-
-    const markdown = await response.text();
-    markdownContent.innerHTML = marked.parse(markdown);
-    bindInternalLinks(lesson);
-  } catch (error) {
+  if (!markdown) {
     markdownContent.innerHTML = `
-      <p class="error">
-        Не удалось загрузить файл. Запустите сайт через локальный сервер
-        (Live Server или <code>npx serve</code>).
-      </p>
-      <p class="error">${error.message}</p>
+      <p class="error">Файл не найден: ${file}</p>
+      <p class="error">Запустите <code>node scripts/build.mjs</code> и обновите страницу.</p>
     `;
+    return;
   }
+
+  markdownContent.innerHTML = marked.parse(markdown);
+  bindInternalLinks(lesson);
 }
 
 function bindInternalLinks(lesson) {
@@ -160,6 +152,14 @@ function selectLesson(lesson, file) {
 }
 
 function init() {
+  if (!window.LESSONS_DATA) {
+    markdownContent.innerHTML = `
+      <p class="error">Данные уроков не загружены.</p>
+      <p class="error">Запустите <code>node scripts/build.mjs</code> перед открытием сайта.</p>
+    `;
+    return;
+  }
+
   const { lesson, file } = getLessonFromUrl();
   selectLesson(lesson, file);
 }

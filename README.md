@@ -43,13 +43,26 @@ npx serve .
 
 **https://radomir-radionov.github.io/lessons/**
 
-Один раз включите публикацию в репозитории:
+### Включить публикацию (один раз)
 
-1. [Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages)
-2. **Build and deployment** → **Deploy from a branch**
-3. Branch: `master`, folder: `/ (root)` → **Save**
+Сейчас Pages **не включён** в репозитории — поэтому сайт отдаёт 404.
 
-После этого сайт обновляется при каждом push в `master`.
+1. Откройте [Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages) (нужен вход в GitHub)
+2. **Build and deployment** → **GitHub Actions**
+3. Сохраните — при следующем push workflow задеплоит сайт
+
+Или через терминал (после `gh auth login`):
+
+```bash
+gh api repos/radomir-radionov/lessons/pages -X POST \
+  -f build_type=workflow
+```
+
+### Сборка данных уроков
+
+```bash
+npm run build
+```
 
 ## Просмотр
 
