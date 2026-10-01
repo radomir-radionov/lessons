@@ -41,14 +41,15 @@ npx serve .
 
 ## GitHub Pages
 
-Сайт публикуется автоматически при push в `master`:
-
 **https://radomir-radionov.github.io/lessons/**
 
-Если страница не открывается после первого деплоя:
+Один раз включите публикацию в репозитории:
 
-1. Откройте **Settings → Pages** в репозитории на GitHub
-2. В **Build and deployment** выберите источник **GitHub Actions**
+1. [Settings → Pages](https://github.com/radomir-radionov/lessons/settings/pages)
+2. **Build and deployment** → **Deploy from a branch**
+3. Branch: `master`, folder: `/ (root)` → **Save**
+
+После этого сайт обновляется при каждом push в `master`.
 
 ## Просмотр
 
